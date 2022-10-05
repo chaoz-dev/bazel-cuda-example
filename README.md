@@ -2,10 +2,11 @@
 An example implementation of a Bazel workspace using CUDA libraries as an external Bazel target.
 
 ## Running the Example
-Run the following:
+Use the following command to run the example:
 ```
 bazel run //src:main
 ```
+
 This should output something similar to the following:
 ```
 $ bazel run //src:main 
