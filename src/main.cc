@@ -1,9 +1,37 @@
 #include <cuda_runtime.h>
 #include <iostream>
 
+#define CUDA_ASSERT(err_n) cuda_assert(err_n, true, __FILE__, __LINE__);
+inline void cuda_assert(cudaError_t err_n, bool terminate, const char* filename, int lineno)
+{
+    if (err_n == cudaSuccess)
+    {
+        return;
+    }
+
+    std::cerr << filename << ": " << lineno << std::endl
+              << cudaGetErrorName(err_n) << ": " << std::endl
+              << cudaGetErrorString(err_n) << std::endl;
+
+    if (terminate)
+    {
+        std::exit(EXIT_FAILURE);
+    }
+}
+
 int main()
 {
-    // Simple example program to show all CUDA devices and their properties.
+    // Show CUDA version.
+    int driver_version  = -1;
+    int runtime_version = -1;
+
+    CUDA_ASSERT(cudaDriverGetVersion(&driver_version));
+    CUDA_ASSERT(cudaRuntimeGetVersion(&runtime_version));
+
+    std::cout << "CUDA driver version: " << driver_version << std::endl;
+    std::cout << "CUDA runtime version: " << runtime_version << std::endl;
+
+    // Show all CUDA devices and their properties.
     int num_devices = 0;
     cudaGetDeviceCount(&num_devices);
 
