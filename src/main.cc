@@ -44,12 +44,12 @@ int main()
         std::cout << "Device number: " << i << std::endl;
         std::cout << "  Device name: " << device.name << std::endl;
         std::cout << "  Compute capability: " << device.major << "." << device.minor << std::endl;
-        std::cout << "  Device clock rate (MHz): " << device.clockRate / 1.0e3 << std::endl;
-        std::cout << "  Device memory (GB): " << device.totalGlobalMem / 1.0e9 << std::endl;
-        std::cout << "  Memory clock rate (MHz): " << (device.memoryClockRate / 2) / 1.0e3 << std::endl;
-        std::cout << "  Memory bus width (bits): " << device.memoryBusWidth << std::endl;
-        std::cout << "  Memory bandwidth (GB/s): " << 2.0 * device.memoryClockRate * (device.memoryBusWidth / 8) / 1.0e6
-                  << std::endl;
+        std::cout << "  Device clock rate: " << device.clockRate / 1.0e3 << " MHz" << std::endl;
+        std::cout << "  Device memory: " << device.totalGlobalMem / 1.0e9 << " GB" << std::endl;
+        std::cout << "  Memory clock rate (effective): " << device.memoryClockRate / 1.0e3 << " MHz" << std::endl;
+        std::cout << "  Memory bus width: " << device.memoryBusWidth << " bit" << std::endl;
+        std::cout << "  Memory bandwidth: " << 2.0 * device.memoryClockRate * (device.memoryBusWidth / 8) / 1.0e6
+                  << " GB/s" << std::endl;
     }
 
     return 0;
